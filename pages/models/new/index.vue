@@ -1,0 +1,105 @@
+<template>
+  <v-container class="text-center">
+    <v-card class="mx-auto" max-width="344">
+      <v-card-text>
+        <v-card-title primary-title> Add New Model </v-card-title>
+        <div class="text--primary">
+          Please upload your 3d model en stl format<br />
+        </div>
+      </v-card-text>
+      <v-card-actions>
+        <v-form
+          enctype="multipart/form-data"
+          @submit.prevent="onSubmit"
+          id="model-send"
+        >
+          <v-text-field
+            v-model="title"
+            :counter="20"
+            :rules="titleRules"
+            label="Name"
+            required
+          ></v-text-field>
+         <label  id="file">Модель в формате stl</label>
+          <input type="file" id="model" ref="model" @change="onSelect('model')" />
+          <Screenshot v-if="model" @clicked="coverRecieve" :src="model" />
+          <v-text-field
+            v-model="description"
+            label="Description"            
+            required
+          ></v-text-field>
+          <v-btn text color="teal accent-4" type="submit" form="model-send"> Add New </v-btn>
+        </v-form>
+      </v-card-actions>
+    </v-card>
+  </v-container>
+</template>
+
+<script>
+import Screenshot from "../../../components/screenshot"
+export default {
+  components: {Screenshot},
+  data() {
+    return {
+      screenshot: false, 
+      description: "",
+      cover: null,
+      title: "",
+      file: "",
+      modelFile: "",
+      model: "",
+      cover: "",
+      titleRules: [
+        (v) => !!v || "Name is required",
+        (v) => (v && v.length <= 20) || "Name must be less than 20 characters",
+      ],
+    };
+  },
+  methods: {
+    coverRecieve(val) {
+      this.cover = val
+    },
+    onSelect(obj) {
+      if (obj == 'file') {
+      const file = this.$refs.file.files[0];
+      this.file = file;
+      this.createBase64(this.file)
+      } else {
+        const file = this.$refs.model.files[0];
+        this.modelFile = file;
+        this.createBase64Model(this.modelFile)
+      }      
+    },
+    createBase64(obj) {
+      var reader = new FileReader();
+      reader.onload = (e) => {
+        this.cover = e.target.result
+      }
+      reader.readAsDataURL(obj)
+    },
+    createBase64Model(obj) {
+      var reader = new FileReader();
+      reader.onload = (e) => {
+        this.model = e.target.result
+      }
+        reader.readAsDataURL(obj)
+    },
+    async onSubmit() {
+      let sendModel = {
+          title: this.title,
+          cover: this.cover,
+          model: this.model,
+          description: this.description,
+          authorID: this.$auth.$state.user._id,
+          authorUsername: this.$auth.user.full_name
+      }
+      try {
+        await this.$axios.post("api/models", sendModel);
+      } catch (err) {
+        console.log(err);
+      }
+      this.$router.push('recent')
+    },
+  },
+};
+</script>
