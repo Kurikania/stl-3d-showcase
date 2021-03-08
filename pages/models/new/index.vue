@@ -1,6 +1,6 @@
 <template>
   <v-container class="text-center">
-    <v-card class="mx-auto" max-width="344">
+    <v-card class="mx-auto" max-width="500">
       <v-card-text>
         <v-card-title primary-title> Add New Model </v-card-title>
         <div class="text--primary">
@@ -10,7 +10,7 @@
       <v-card-actions>
         <v-form
           enctype="multipart/form-data"
-          @submit.prevent="onSubmit"
+          @submit.native.prevent="onSubmit"
           id="model-send"
         >
           <v-text-field
@@ -98,7 +98,7 @@ export default {
       } catch (err) {
         console.log(err);
       }
-      this.$router.push('recent')
+      this.$router.push('/models')
     },
   },
 };

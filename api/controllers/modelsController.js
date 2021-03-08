@@ -11,10 +11,6 @@ module.exports.create = function(req, res) {
     let model = new Model({
         title : req.body.title,
         description : req.body.description,
-        // author: {
-        //   id : req.user.id,
-        //   username: req.user.username
-        // }
     })    
     try {        
         saveCover(model, req.body.cover);
@@ -84,17 +80,6 @@ module.exports.update = [
 
 
 // Delete
-module.exports.delete = function(req, res) {
-  var id = req.params.id;
-  Model.findByIdAndRemove(id, function(err, article){
-      if(err) {
-          return res.status(500).json({
-              message: 'Error getting record.'
-          });
-      }
-      return res.json(article);
-  });
-}
 
 function saveCover(model, coverEncoded) {
   if (coverEncoded == null) return;

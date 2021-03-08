@@ -4,9 +4,7 @@ const router = Router();
 const Comment = require("../models/comment");
 const Model = require("../models/model");
 
-router.get("/comments", (req, res) => {
-  //lookup campground using ID
-});
+
 
 // Get One
 router.get("/comments/:id", (req, res) => {
@@ -21,7 +19,6 @@ router.get("/comments/:id", (req, res) => {
 
 // Create
 router.post("/comments", config.isAuthenticated, async (req, res) => {
-
   Model.findById(req.body.model, function(err, model) {
     if (err) {
       console.log(err);
@@ -34,9 +31,11 @@ router.post("/comments", config.isAuthenticated, async (req, res) => {
         } else {
           comment.comment = req.body.comment;
           comment.author.username = req.body.authorUsername;
+          comment.author.id = req.body.authorID;
           comment.save();
           model.comments.push(comment);
           model.save();
+          res.json({ message: "success" })
         }
       });
     }
@@ -44,6 +43,16 @@ router.post("/comments", config.isAuthenticated, async (req, res) => {
 });
 
 // Delete
-// router.delete("/comments/:id", config.isAuthenticated, modelsController.delete);
+router.delete("/comments/:id", config.isAuthenticated, async (req, res) => {
+  var id = req.params.id;
+  Comment.findByIdAndRemove(id, function(err, article){
+      if(err) {
+          return res.status(500).json({
+              message: 'Error getting record.'
+          });
+      }
+      return res.json(article);
+  });
+});
 
 module.exports = router;

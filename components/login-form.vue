@@ -1,4 +1,5 @@
 <template>
+<v-card class="mx-auto pa-6" >
   <v-form
     ref="form"
     v-model="form.valid"
@@ -36,6 +37,7 @@
       {{ buttonTitle }}
     </v-btn>
   </v-form>
+</v-card>
 </template>
 
 <script>

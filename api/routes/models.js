@@ -20,6 +20,18 @@ router.get("/models", (req,res) => {
       });
 });
 
+// Get by Author
+router.get("/models/mymodels/:id",  (req, res) => {
+const result = req.params.id.split(",")
+ Model.find({author: {_id: result[0], username: result[1]}},  (err, foundModel) =>{
+		if(err) {
+			console.log("error", err);
+		} else {
+      res.json(foundModel); 
+		}
+	});
+});
+
 // Get One
 router.get("/models/:id", (req, res) => {
   var id = req.params.id;
@@ -74,7 +86,17 @@ router.post("/models", config.isAuthenticated, async (req, res) => {
 
 
 // Delete
-router.delete("/models/:id", config.isAuthenticated, modelsController.delete);
+router.delete("/models/:id", config.isAuthenticated, (req, res) => {
+  var id = req.params.id;
+  Model.findByIdAndRemove(id, function(err, article){
+      if(err) {
+          return res.status(500).json({
+              message: 'Error getting record.'
+          });
+      }
+      return res.json(article);
+  });
+});
 
 module.exports = router;
 

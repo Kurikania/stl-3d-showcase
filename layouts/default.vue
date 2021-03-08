@@ -12,14 +12,19 @@
             <v-list-item-title>Home Page</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/models/new" router exact>
-          <v-list-item-content v-if="$auth.loggedIn">
+        <v-list-item v-if="$auth.loggedIn" to="/models/new" router exact>
+          <v-list-item-content>
             <v-list-item-title>Add new model</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item to="/models/recent" router exact>
-          <v-list-item-content v-if="$auth.loggedIn">
+          <v-list-item-content>
             <v-list-item-title>Recent Models</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/models" router exact>
+          <v-list-item-content>
+            <v-list-item-title>My Models</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -41,7 +46,7 @@
         <nuxt-link to="/register"> Register </nuxt-link>
       </span>
     </v-app-bar>
-    <v-main>
+    <v-main  class="bg">
       <v-container>
         <nuxt />
       </v-container>
@@ -84,3 +89,36 @@ export default {
   }
 }
 </script>
+<style>
+.container {
+  padding: 0px  !important;
+    width: 100vw !important;
+  max-width: 100vw  !important;
+}
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: #b1cfd6;
+  border-left: 1px solid #a1bdf3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bcd1e9;
+  border: solid 3px #98c0fd;
+  border-radius: 7px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: white;
+}
+
+.bg {
+  background-image: url("/blue-low-poly-background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color:  rgb(255, 255, 255);
+}
+
+</style>

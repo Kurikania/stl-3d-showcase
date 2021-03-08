@@ -2,7 +2,6 @@
 const colors = require('vuetify/es5/util/colors') 
 
 module.exports = { 
-  mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - final-project',
