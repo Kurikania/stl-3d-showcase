@@ -42,6 +42,9 @@ module.exports = {
     '@nuxtjs/auth',
   ],
 
+  axios: {
+    browserBaseURL: process.env.BROWSER_BASE_URL
+  },
   serverMiddleware: [
     '~/api/index.js'
 ],

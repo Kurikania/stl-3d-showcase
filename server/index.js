@@ -16,5 +16,5 @@ builder.build()
   // Рендерить каждый маршрут с Nuxt.js
     app.use(nuxt.render)
     // Запустить сервер
-    app.listen("https://stl-3d-showcase.herokuapp.com")
+    app.listen(process.env.PORT)
   });
