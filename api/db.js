@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect( process.env.DATABASE_URL|| 'mongodb://localhost/test', {useNewUrlParser: true,  useUnifiedTopology: true})
+mongoose.connect('mongodb+srv://abc123:Wd0KonYf8PF5Y4LW@cluster0.5zriv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser: true,  useUnifiedTopology: true})
 .then(()=>{
     console.log("Connected to the Database. Yayzow!");
 })
