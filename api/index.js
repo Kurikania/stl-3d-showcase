@@ -25,4 +25,3 @@ module.exports = {
   path: '/api',
   handler: app
 }
-app.listen(process.env.PORT)
