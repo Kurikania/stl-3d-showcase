@@ -1,5 +1,5 @@
 const config = require('../config')
-const User = require('../models/User')
+const User = require('../models/user')
 const validator = require('express-validator')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs')
