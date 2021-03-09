@@ -42,12 +42,9 @@ module.exports = {
     '@nuxtjs/auth',
   ],
 
-  axios: {
-    browserBaseURL: process.env.BROWSER_BASE_URL
-  },
-//   serverMiddleware: [
-//     '~/api/index.js'
-// ],
+  serverMiddleware: [
+    '~/api/index.js'
+],
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],

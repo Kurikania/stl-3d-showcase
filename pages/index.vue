@@ -6,7 +6,7 @@
       </section>
       <section  class="separador-top separador-bottom">
         <h1>Share your best work</h1>
-        <v-btn color="indigo" dark large @click="start">Get started</v-btn>
+        <v-btn color="indigo" dark large >Get started</v-btn>
       </section>
     </v-row>
   </v-container>
