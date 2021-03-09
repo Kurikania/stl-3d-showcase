@@ -56,7 +56,7 @@ export default {
         })
 
         if (user) {
-          await this.$router.push('/admin')
+          await this.$router.push('/recent')
         }
 
       } catch (error) {
