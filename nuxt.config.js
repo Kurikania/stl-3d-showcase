@@ -41,7 +41,9 @@ module.exports = {
     '@nuxtjs/axios', // enables Nuxt Axios module
     '@nuxtjs/auth',
   ],
-
+  axios: {
+    baseURL: '/'
+  },
   serverMiddleware: [
     '~/api/index.js'
 ],

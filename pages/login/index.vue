@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     async login () {
+      console.log(this.$axios.defaults.baseURL)
       try {
        const response = await this.$auth.loginWith('local', {
           data: {
