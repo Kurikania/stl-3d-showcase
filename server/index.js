@@ -1,7 +1,6 @@
 
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
+require('dotenv').config()
+
 
 const app = require('express')();
 const {Nuxt, Builder}  = require('nuxt');
@@ -17,5 +16,5 @@ builder.build()
   // Рендерить каждый маршрут с Nuxt.js
     app.use(nuxt.render)
     // Запустить сервер
-    app.listen(process.env.PORT || 3000)
+    app.listen(process.env.PORT)
   });
