@@ -1,12 +1,13 @@
 const express = require('express')
 const db = require('./db')
 const bodyParser = require('body-parser')
-
+const cors = require('cors')
 // Create express instnace
 const app = express()
 
 // Init body-parser options (inbuilt with express)
 
+app.use(cors())
 app.use(bodyParser.json({limit: '50mb', extended: true}))
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 

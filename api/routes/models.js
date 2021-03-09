@@ -13,7 +13,7 @@ router.get("/models", (req,res) => {
     Model.find({}, function(err, models){
         if(err) {
             return res.status(500).json({
-                message: 'Error getting records.'
+                message: `Error getting records. ${err}`
             });
         }
         return res.json(models);
