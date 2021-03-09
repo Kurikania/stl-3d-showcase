@@ -89,7 +89,11 @@ export default {
   },
   computed: {
     currentId() {
-      return this.$auth.$state.user._id;
+      if (this.$auth.$state.user) {
+        return this.$auth.$state.user._id;
+      } else {
+        return ""
+      }
     },
   },
   async fetch() {

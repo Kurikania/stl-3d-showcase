@@ -3,7 +3,7 @@
     <v-row style="margin-top: 30px" justify="center"> 
     <v-card
       class="ma-2"
-      max-width="400"
+      max-width="320"
       v-for="model in data"
       :key="model._id"
     >

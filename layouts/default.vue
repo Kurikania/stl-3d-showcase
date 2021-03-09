@@ -22,11 +22,6 @@
             <v-list-item-title>Recent Models</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/models" router exact>
-          <v-list-item-content>
-            <v-list-item-title>My Models</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar
