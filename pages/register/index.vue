@@ -56,7 +56,7 @@ export default {
         })
 
         if (user) {
-          await this.$router.push('/recent')
+          await this.$router.push('/models/recent')
         }
 
       } catch (error) {

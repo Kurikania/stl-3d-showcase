@@ -16,10 +16,11 @@
               Delete
             </v-btn>
             <h4>Comments section</h4>
-            <v-card-actions>
+            <v-card-actions v-if="currentId !== ''">
               <v-text-field v-model="post" required></v-text-field>
               <v-btn color="primary" @click="addPost"> Add new comment </v-btn>
             </v-card-actions>
+            <div v-else>Please <nuxt-link to="/login"> login </nuxt-link> to leave comments</div>
           </v-card-text>
           <v-list-item v-for="comment in data.comments" :key="comment._id">
             <v-list-item-content>
@@ -27,7 +28,7 @@
                 >{{ comment.comment }}
                 <span
                   class="delete"
-                  @click="remove(comment._id)"
+                  @click.native="remove(comment._id)"
                   v-if="comment.author.id == currentId"
                   >[X]</span
                 >
@@ -76,14 +77,17 @@ export default {
     },
     async remove(id) {
       try {
-        await this.$axios.delete(`api/comments/${id}`);
+        await this.$axios.delete(`api/comments/${id}`)        
       } catch (err) {
         console.log(err);
       }
+        const res = await this.$axios.get(`api/models/${this.$route.params.id}`);
+        this.data = res.data;
     },
     async deleteModel(id) {
-      try {
-        await this.$axios.delete(`api/models/${id}`);
+      try {     
+        await this.$axios.delete(`api/models/${id}`)
+        this.$nuxt.$router.replace({ path: '/models/recent'})
       } catch (err) {
         console.log(err);
       }
