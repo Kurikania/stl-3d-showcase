@@ -10,7 +10,7 @@
             <v-btn
               dark
               color="red"
-              v-if="data.author.id == currentId"
+              v-if="isModelAuthor"
               @click="deleteModel(data._id)"
             >
               Delete
@@ -52,6 +52,8 @@ export default {
       data: [],
       comments: [],
       post: "",
+      currentId: "",
+      isModelAuthor: false
     };
   },
   methods: {
@@ -87,18 +89,16 @@ export default {
       }
     },
   },
-  computed: {
-    currentId() {
-      if (this.$auth.$state.user) {
-        return this.$auth.$state.user._id;
-      } else {
-        return ""
-      }
-    },
-  },
+
   async fetch() {
     const res = await this.$axios.get(`api/models/${this.$route.params.id}`);
     this.data = res.data;
+    if (this.$auth.$state.user) {
+     this.currentId = this.$auth.$state.user._id;
+    } else {
+       this.currentId =  ""
+    }
+    this.isModelAuthor = this.data.author.id == this.currentId
   },
 };
 </script> 

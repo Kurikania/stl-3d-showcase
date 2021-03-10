@@ -35,7 +35,8 @@ router.post("/comments", config.isAuthenticated, async (req, res) => {
           comment.save();
           model.comments.push(comment);
           model.save();
-          res.json({ message: "success" })
+          res.json({ message: "success",
+                      comment: comment })
         }
       });
     }

@@ -6,14 +6,24 @@
       </section>
       <section  class="separador-top separador-bottom">
         <h1>Share your best work</h1>
-        <v-btn color="indigo" dark large >Get started</v-btn>
+        <v-btn color="indigo" @click.native="start" dark large >Get started</v-btn>
       </section>
     </v-row>
   </v-container>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    sart() {
+      if(this.$auth.$state.user) {
+        this.$router.push("/models/recent")
+      } else {
+        this.$router.push("/login")
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -25,14 +35,15 @@ export default {};
 section {
   width: 100vw !important;
   max-width: 100vw  !important;
-  padding: 50px 0;
+  padding: 20px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 h1 {
   color: rgb(17, 22, 66);
-  font-size: 5em;
+  font-size: 2em;
+  padding: 20px
 }
 .overlay {
   background-color: rgba(248, 247, 216, 0.322);
