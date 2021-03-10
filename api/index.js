@@ -23,7 +23,6 @@ app.use(comments)
 
 // Export the server middleware
 module.exports = {
-  prefix: false,
   path: '/api',
   handler: app
 }
