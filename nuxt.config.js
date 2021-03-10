@@ -3,6 +3,7 @@ const colors = require('vuetify/es5/util/colors')
 
 module.exports = { 
   // Global page headers: https://go.nuxtjs.dev/config-head
+  mode: "universal",
   head: {
     titleTemplate: '%s - final-project',
     title: 'final-project',
@@ -63,10 +64,7 @@ module.exports = {
       }
     }
   },
-  axios: {
-    baseURL: "/",
-    proxy: true
-  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
