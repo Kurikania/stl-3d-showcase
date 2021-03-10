@@ -1,5 +1,12 @@
 <template>
   <v-container class="text-center">
+        <v-overlay :value="isLoading">
+      <v-progress-circular
+        color="primary"
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+        </v-overlay>
     <v-card class="mx-auto" max-width="600">
       <v-card-title>{{ data.title }}</v-card-title>
       <v-row align="center">
@@ -54,7 +61,8 @@ export default {
       comments: [],
       post: "",
       currentId: "",
-      isModelAuthor: false
+      isModelAuthor: false,
+      isLoading: false,
     };
   },
   methods: {
@@ -64,6 +72,7 @@ export default {
         authorUsername: this.$auth.user.full_name,
         comment: this.post,
         model: this.data._id,
+        
       };
       console.log(newPost);
       try {
@@ -95,8 +104,10 @@ export default {
   },
 
   async fetch() {
+    this.isLoading = true
     const res = await this.$axios.get(`api/models/${this.$route.params.id}`);
     this.data = res.data;
+    this.isLoading = false
     if (this.$auth.$state.user) {
      this.currentId = this.$auth.$state.user._id;
     } else {

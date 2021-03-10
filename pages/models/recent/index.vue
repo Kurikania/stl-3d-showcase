@@ -1,5 +1,12 @@
 <template>
   <v-container class="text-center">
+      <v-overlay :value="isLoading">
+      <v-progress-circular
+        color="primary"
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
     <v-row style="margin-top: 20px" justify="center" v-if="$auth.$state.user">
         <v-card class="ma-2 pa-3" max-width="320" @click="($nuxt.$router.replace({ path: '/models/new'}))">          
           <v-icon x-large color="blue darken-2"> mdi-plus </v-icon>  Add new model
@@ -32,12 +39,15 @@
 export default {
   data() {
     return {
-      data: [],
+      data: [],      
+      isLoading: false,
     };
   },
   async fetch() {
+     this.isLoading = true;
     const res = await this.$axios.get("api/models");
     this.data = res.data;
+     this.isLoading = false;
   },
   methods: {},
 };

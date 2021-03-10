@@ -5,8 +5,6 @@ const Model = require("../models/model");
 const imageMimeTypes = ["image/jpeg", "image/png", "images/gif"];
 const modelMimeTypes = ["model/obj", "model/stl", "model/mtl"];
 
-// Initialize Controller
-const modelsController = require("../controllers/modelsController");
 
 // Get All
 router.get("/models", (req,res) => {
