@@ -15,7 +15,7 @@
 <script>
 export default {
   methods: {
-    sart() {
+    start() {
       if(this.$auth.$state.user) {
         this.$router.push("/models/recent")
       } else {

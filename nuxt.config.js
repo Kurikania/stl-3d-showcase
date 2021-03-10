@@ -96,7 +96,10 @@ module.exports = {
     },
     rewriteRedirects: true,
 },
+axios: {
+  proxy: true,
+  browserBaseURL: '/', // client / browser
 }
-
+}
 
 
