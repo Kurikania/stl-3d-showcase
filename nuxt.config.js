@@ -97,6 +97,7 @@ module.exports = {
     rewriteRedirects: true,
 },
 axios: {
+  baseURL: "https://stl-3d-showcase.herokuapp.com",
   proxy: true,
   browserBaseURL: '/', // client / browser
 }
