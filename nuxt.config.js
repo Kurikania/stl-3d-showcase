@@ -103,6 +103,6 @@ module.exports = {
 
 export default {
   axios: {
-    baseURL: "/"
+    baseURL: "https://stl-3d-showcase.herokuapp.com/"
   }
 }
