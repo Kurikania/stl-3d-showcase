@@ -41,9 +41,7 @@ module.exports = {
     '@nuxtjs/axios', // enables Nuxt Axios module
     '@nuxtjs/auth',
   ],
-  // axios: {
-  //   baseURL: '/'
-  // },
+
   serverMiddleware: [
     '~/api/index.js'
 ],
@@ -65,7 +63,9 @@ module.exports = {
       }
     }
   },
-
+  // axios: {
+  //   baseURL: "/",
+  // },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
@@ -101,8 +101,3 @@ module.exports = {
 
 
 
-export default {
-  axios: {
-    baseURL: "https://stl-3d-showcase.herokuapp.com/"
-  }
-}
