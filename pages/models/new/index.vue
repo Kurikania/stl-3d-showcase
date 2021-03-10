@@ -1,5 +1,12 @@
 <template>
   <v-container class="text-center">
+        <v-overlay :value="isLoading">
+      <v-progress-circular
+        color="primary"
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+        </v-overlay>
     <v-row style="margin-top: 20px" justify="center">
     <v-card class="mx-auto" max-width="500">
       <v-card-text>
@@ -63,7 +70,8 @@ export default {
       file: "",
       modelFile: "",
       model: "",
-      snackbarMessage: "",
+      snackbarMessage: "",      
+      isLoading: false,
       titleRules: [
         (v) => !!v || "Name is required",
         (v) => (v && v.length <= 20) || "Name must be less than 20 characters",
@@ -102,6 +110,7 @@ export default {
       reader.readAsDataURL(obj);
     },
     async onSubmit() {
+      this.isLoading = true
       let sendModel = {
         title: this.title,
         cover: this.cover,
@@ -112,8 +121,10 @@ export default {
       };
       if (this.title != "" && this.cover != "" && this.model != "") {
         try {
-          await this.$axios.post("api/models", sendModel)
+          await this.$axios.post("api/models", sendModel).then(() => {
+            this.isLoading = false
           this.$nuxt.$router.replace({ path: '/models/recent'})
+          })
         } catch (err) {
           console.log(err);
           this.snackbar = true;

@@ -12,7 +12,7 @@
           <v-icon x-large color="blue darken-2"> mdi-plus </v-icon>  Add new model
         </v-card>
       </v-row> 
-    <v-row style="margin-top: 20px" justify="center">
+    <v-row style="margin: 10px" justify="center">
       <v-card
         class="ma-2"
         max-width="320"

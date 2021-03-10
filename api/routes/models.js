@@ -74,6 +74,9 @@ router.post("/models", config.isAuthenticated, async (req, res) => {
   model.author.username = req.body.authorUsername
   try {
     await model.save();
+    return res.send({
+      message: `Success`
+    });
   } catch (error) {
     return res.send({
       message: `Error saving record We didnt save it 42 ${error}`,

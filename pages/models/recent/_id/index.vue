@@ -94,8 +94,10 @@ export default {
         this.data = res.data;
     },
     async deleteModel(id) {
-      try {     
+      try { 
+        this.isLoading = true     
         await this.$axios.delete(`api/models/${id}`)
+        this.isLoading = false
         this.$nuxt.$router.replace({ path: '/models/recent'})
       } catch (err) {
         console.log(err);
