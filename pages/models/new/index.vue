@@ -110,7 +110,6 @@ export default {
       reader.readAsDataURL(obj);
     },
     async onSubmit() {
-      this.isLoading = true
       let sendModel = {
         title: this.title,
         cover: this.cover,
@@ -120,6 +119,7 @@ export default {
         authorUsername: this.$auth.user.full_name,
       };
       if (this.title != "" && this.cover != "" && this.model != "") {
+        this.isLoading = true
         try {
           await this.$axios.post("api/models", sendModel).then(() => {
             this.isLoading = false
