@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" :clipped="clipped" fixed app>
+    <v-navigation-drawer :disable-resize-watcher="resize" v-model="drawer" :clipped="clipped" fixed app>
       <v-list>
         <v-list-item to="/" router exact>
           <v-list-item-content>
@@ -54,6 +54,7 @@
 export default {
   data() {
     return {
+      resize: true,
       clipped: false,
       drawer: false,
       fixed: false,
